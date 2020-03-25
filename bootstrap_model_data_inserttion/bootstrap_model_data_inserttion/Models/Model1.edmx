@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Asp_DaniyalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dep_tbl">
+          <Key>
+            <PropertyRef Name="Dep_id" />
+          </Key>
+          <Property Name="Dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dep_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="emp_tbl">
+          <Key>
+            <PropertyRef Name="Emp_id" />
+          </Key>
+          <Property Name="Emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emp_name" Type="varchar" MaxLength="10" />
+          <Property Name="Dep_id" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="site_tbl">
+          <Key>
+            <PropertyRef Name="site_id" />
+          </Key>
+          <Property Name="site_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emp_id" Type="int" />
+          <Property Name="site_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__emp_tbl__Dep_id__6E01572D">
+          <End Role="Dep_tbl" Type="Self.Dep_tbl" Multiplicity="0..1" />
+          <End Role="emp_tbl" Type="Self.emp_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dep_tbl">
+              <PropertyRef Name="Dep_id" />
+            </Principal>
+            <Dependent Role="emp_tbl">
+              <PropertyRef Name="Dep_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Asp_DaniyalModelStoreContainer">
+          <EntitySet Name="Dep_tbl" EntityType="Self.Dep_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="emp_tbl" EntityType="Self.emp_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="site_tbl" EntityType="Self.site_tbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__emp_tbl__Dep_id__6E01572D" Association="Self.FK__emp_tbl__Dep_id__6E01572D">
+            <End Role="Dep_tbl" EntitySet="Dep_tbl" />
+            <End Role="emp_tbl" EntitySet="emp_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Asp_DaniyalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dep_tbl">
+          <Key>
+            <PropertyRef Name="Dep_id" />
+          </Key>
+          <Property Name="Dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dep_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="emp_tbl" Relationship="Asp_DaniyalModel.FK__emp_tbl__Dep_id__6E01572D" FromRole="Dep_tbl" ToRole="emp_tbl" />
+        </EntityType>
+        <EntityType Name="emp_tbl">
+          <Key>
+            <PropertyRef Name="Emp_id" />
+          </Key>
+          <Property Name="Emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emp_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Dep_id" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dep_tbl" Relationship="Asp_DaniyalModel.FK__emp_tbl__Dep_id__6E01572D" FromRole="emp_tbl" ToRole="Dep_tbl" />
+        </EntityType>
+        <EntityType Name="site_tbl">
+          <Key>
+            <PropertyRef Name="site_id" />
+          </Key>
+          <Property Name="site_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emp_id" Type="Int32" />
+          <Property Name="site_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Asp_DaniyalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dep_tbl" EntityType="Self.Dep_tbl" />
+          <EntitySet Name="emp_tbl" EntityType="Self.emp_tbl" />
+          <EntitySet Name="site_tbl" EntityType="Self.site_tbl" />
+          <AssociationSet Name="FK__emp_tbl__Dep_id__6E01572D" Association="Asp_DaniyalModel.FK__emp_tbl__Dep_id__6E01572D">
+            <End Role="Dep_tbl" EntitySet="Dep_tbl" />
+            <End Role="emp_tbl" EntitySet="emp_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__emp_tbl__Dep_id__6E01572D">
+          <End Type="Asp_DaniyalModel.Dep_tbl" Role="Dep_tbl" Multiplicity="0..1" />
+          <End Type="Asp_DaniyalModel.emp_tbl" Role="emp_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dep_tbl">
+              <PropertyRef Name="Dep_id" />
+            </Principal>
+            <Dependent Role="emp_tbl">
+              <PropertyRef Name="Dep_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Asp_DaniyalModelStoreContainer" CdmEntityContainer="Asp_DaniyalEntities">
+          <EntitySetMapping Name="Dep_tbl">
+            <EntityTypeMapping TypeName="Asp_DaniyalModel.Dep_tbl">
+              <MappingFragment StoreEntitySet="Dep_tbl">
+                <ScalarProperty Name="Dep_id" ColumnName="Dep_id" />
+                <ScalarProperty Name="Dep_name" ColumnName="Dep_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emp_tbl">
+            <EntityTypeMapping TypeName="Asp_DaniyalModel.emp_tbl">
+              <MappingFragment StoreEntitySet="emp_tbl">
+                <ScalarProperty Name="Emp_id" ColumnName="Emp_id" />
+                <ScalarProperty Name="Emp_name" ColumnName="Emp_name" />
+                <ScalarProperty Name="Dep_id" ColumnName="Dep_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="site_tbl">
+            <EntityTypeMapping TypeName="Asp_DaniyalModel.site_tbl">
+              <MappingFragment StoreEntitySet="site_tbl">
+                <ScalarProperty Name="site_id" ColumnName="site_id" />
+                <ScalarProperty Name="Emp_id" ColumnName="Emp_id" />
+                <ScalarProperty Name="site_name" ColumnName="site_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

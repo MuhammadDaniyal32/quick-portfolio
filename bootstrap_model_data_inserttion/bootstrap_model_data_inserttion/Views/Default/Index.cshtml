@@ -1,0 +1,67 @@
+﻿@model bootstrap_model_data_inserttion.Models.Class2
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="model-form">
+                            @Html.DropDownListFor(model => model.Dep_id,ViewBag.dep_li as SelectList,"--Select--",new { @class="form-control"})
+                            @Html.TextBoxFor(model => model.Emp_name,new {@class= "form-control" , @placeholder ="Name"})
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+                            @Html.TextBoxFor(model => model.site_name, new { @class = "form-control", @placeholder = "site name" })
+                        </form>
+
+                        <div style="display:none;text-align:center" id="img_div">
+                            <img src="~/Content/a3724efc0c85bd69c4366d96547cb667.gif" width="150"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="reset" value="Submit" class="btn btn-success" id="btn_submit" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function ()
+    {
+        $("#btn_submit").click(function ()
+        {
+            $("#img_div").show();
+
+            var myformdata = $("#model-form").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/Default/Index",
+                data: myformdata,
+                success: function () {
+                    $("#img_div").hide();
+                    $("#myModal").modal("hide")
+                }
+            })
+        }
+        )
+    }
+    )
+</script>

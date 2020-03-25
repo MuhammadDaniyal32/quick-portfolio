@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Asp_DaniyalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dep_tbl">
+    <Key>
+      <PropertyRef Name="Dep_id" />
+    </Key>
+    <Property Name="Dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dep_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="emp_tbl" Relationship="Asp_DaniyalModel.FK__emp_tbl__Dep_id__6E01572D" FromRole="Dep_tbl" ToRole="emp_tbl" />
+  </EntityType>
+  <EntityType Name="emp_tbl">
+    <Key>
+      <PropertyRef Name="Emp_id" />
+    </Key>
+    <Property Name="Emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Emp_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Dep_id" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Dep_tbl" Relationship="Asp_DaniyalModel.FK__emp_tbl__Dep_id__6E01572D" FromRole="emp_tbl" ToRole="Dep_tbl" />
+  </EntityType>
+  <EntityType Name="site_tbl">
+    <Key>
+      <PropertyRef Name="site_id" />
+    </Key>
+    <Property Name="site_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Emp_id" Type="Int32" />
+    <Property Name="site_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="Asp_DaniyalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dep_tbl" EntityType="Self.Dep_tbl" />
+    <EntitySet Name="emp_tbl" EntityType="Self.emp_tbl" />
+    <EntitySet Name="site_tbl" EntityType="Self.site_tbl" />
+    <AssociationSet Name="FK__emp_tbl__Dep_id__6E01572D" Association="Asp_DaniyalModel.FK__emp_tbl__Dep_id__6E01572D">
+      <End Role="Dep_tbl" EntitySet="Dep_tbl" />
+      <End Role="emp_tbl" EntitySet="emp_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__emp_tbl__Dep_id__6E01572D">
+    <End Type="Asp_DaniyalModel.Dep_tbl" Role="Dep_tbl" Multiplicity="0..1" />
+    <End Type="Asp_DaniyalModel.emp_tbl" Role="emp_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dep_tbl">
+        <PropertyRef Name="Dep_id" />
+      </Principal>
+      <Dependent Role="emp_tbl">
+        <PropertyRef Name="Dep_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

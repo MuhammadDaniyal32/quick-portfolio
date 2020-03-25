@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Asp_DaniyalModelStoreContainer" CdmEntityContainer="Asp_DaniyalEntities">
+    <EntitySetMapping Name="Dep_tbl">
+      <EntityTypeMapping TypeName="Asp_DaniyalModel.Dep_tbl">
+        <MappingFragment StoreEntitySet="Dep_tbl">
+          <ScalarProperty Name="Dep_id" ColumnName="Dep_id" />
+          <ScalarProperty Name="Dep_name" ColumnName="Dep_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="emp_tbl">
+      <EntityTypeMapping TypeName="Asp_DaniyalModel.emp_tbl">
+        <MappingFragment StoreEntitySet="emp_tbl">
+          <ScalarProperty Name="Emp_id" ColumnName="Emp_id" />
+          <ScalarProperty Name="Emp_name" ColumnName="Emp_name" />
+          <ScalarProperty Name="Dep_id" ColumnName="Dep_id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="site_tbl">
+      <EntityTypeMapping TypeName="Asp_DaniyalModel.site_tbl">
+        <MappingFragment StoreEntitySet="site_tbl">
+          <ScalarProperty Name="site_id" ColumnName="site_id" />
+          <ScalarProperty Name="Emp_id" ColumnName="Emp_id" />
+          <ScalarProperty Name="site_name" ColumnName="site_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

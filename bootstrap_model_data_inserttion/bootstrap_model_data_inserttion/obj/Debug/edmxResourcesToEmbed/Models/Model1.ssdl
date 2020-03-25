@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Asp_DaniyalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dep_tbl">
+    <Key>
+      <PropertyRef Name="Dep_id" />
+    </Key>
+    <Property Name="Dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dep_name" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="emp_tbl">
+    <Key>
+      <PropertyRef Name="Emp_id" />
+    </Key>
+    <Property Name="Emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Emp_name" Type="varchar" MaxLength="10" />
+    <Property Name="Dep_id" Type="int" />
+    <Property Name="Address" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="site_tbl">
+    <Key>
+      <PropertyRef Name="site_id" />
+    </Key>
+    <Property Name="site_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Emp_id" Type="int" />
+    <Property Name="site_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__emp_tbl__Dep_id__6E01572D">
+    <End Role="Dep_tbl" Type="Self.Dep_tbl" Multiplicity="0..1" />
+    <End Role="emp_tbl" Type="Self.emp_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dep_tbl">
+        <PropertyRef Name="Dep_id" />
+      </Principal>
+      <Dependent Role="emp_tbl">
+        <PropertyRef Name="Dep_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Asp_DaniyalModelStoreContainer">
+    <EntitySet Name="Dep_tbl" EntityType="Self.Dep_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="emp_tbl" EntityType="Self.emp_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="site_tbl" EntityType="Self.site_tbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__emp_tbl__Dep_id__6E01572D" Association="Self.FK__emp_tbl__Dep_id__6E01572D">
+      <End Role="Dep_tbl" EntitySet="Dep_tbl" />
+      <End Role="emp_tbl" EntitySet="emp_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
